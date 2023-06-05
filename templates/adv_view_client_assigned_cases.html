@@ -1,0 +1,28 @@
+{% include "advocate_header.html" %}
+<center>
+	<h1>Client Assigned Cases</h1>
+	<table class="table" style="width: 800px;">
+		<tr>
+			<th>Sl No</th>
+			<th>Client</th>
+			<th>Case</th>
+			<th>Date-Time</th>
+			<th>Status</th>
+		</tr>
+		{% for row in data['assign'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			<td>{{row['first_name']}} {{row['last_name']}}</td>
+			<td>{{row['title']}}</td>
+			<td>{{row['date_time']}}</td>
+			<td>{{row['a_status']}}</td>
+			{% if row['a_status']=='assigned' %}
+			<td><a href="?action=accept&aid={{row['assign_id']}}">Accept</a></td>
+			<td><a href="?action=reject&aid={{row['assign_id']}}">Reject</a></td>
+			
+			{% endif %}
+		</tr>
+		{% endfor %}
+	</table><br><br><br><br>
+</center>
+{% include "footer.html" %}

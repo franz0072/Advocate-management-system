@@ -1,0 +1,27 @@
+{% include 'advocate_header.html' %}
+<center>
+	<h1>View Hearing Chat</h1>
+{% if data['view'] %}
+<h3>Name: {{ data['view'][0]['fullname'] }}</h3><br>
+<table class="table-responsive" style="width: 800px !important">
+	<tr>
+		<th>Sl.No</th>
+		<th>Case Notes</th>
+		<th>Date</th>
+	
+	</tr>
+	{% for r in data['view'] %}
+	<tr>
+		<td>{{ loop.index }}</td>
+		<td>{{ r['notes'] }}</td>
+		<td>{{ r['date_time'] }}</td>
+	
+		<!-- <td><a class="btn btn-secondary" href="admin_view_hearing_chat?id={{ r['case_id'] }}">Hearing Chats</a></td> -->
+	</tr>
+	{% endfor %}
+</table>
+{% else %}<br><br>
+<h4 style="color: orange">Cases Not Available</h4><br><br><br>
+{% endif %}
+</center><br><br><br>
+{% include 'footer.html' %}

@@ -1,0 +1,83 @@
+{% include 'admin_header.html' %}
+
+<center>
+	<h1>Manage Law Details</h1>
+<br>
+	{% if data['viewupdates'] %}
+	<h3>Update Law Details</h3><br>
+	<form method="post">
+		<table>
+			<tr>
+				<th>Title</th>
+				<td><input type="text" name="crime_type_name"  pattern="[a-zA-Z\s]{0,20}" value="{{data['viewupdates'][0]['title']}}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>IPC Code</th>
+				<td><input type="text" name="ipc_code"  pattern="[a-zA-Z0-9\s]{0,20}" value="{{data['viewupdates'][0]['ipc_code']}}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><input type="text" name="discription"  pattern="[a-zA-Z0-9\s]{0,100}" value="{{data['viewupdates'][0]['description']}}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Penalty</th>
+				<td><input type="number" name="penalty" min=0 value="{{data['viewupdates'][0]['penalty']}}" required class="form-control"></td>
+			</tr>
+			<tr><td><br></td></tr>
+			<tr>
+				<td colspan=2 align="center"><input class="btn btn-primary" type="submit" name="updatesubmit" value="Update"></td>
+			</tr>
+		</table>
+	</form>
+	{% else %}
+	<form method="post">
+		<table>
+			<tr>
+				<th>Title</th>
+				<td><input type="text" name="crime_type_name"  pattern="[a-zA-Z\s]{0,20}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>IPC Code</th>
+				<td><input type="text" name="ipc_code"  pattern="[a-zA-Z0-9\s]{0,20}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><input type="text" name="discription"  pattern="[a-zA-Z0-9\s]{0,100}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Penalty</th>
+				<td><input type="number" name="penalty" min=0 required class="form-control"></td>
+			</tr>
+			<tr><td><br></td></tr>
+			<tr>
+				<td colspan=2 align="center"><input type="submit" name="submit" class="btn btn-success" value="Add Law Details"></td>
+			</tr>
+		</table>
+	</form><br>
+	{% endif %}
+{% if data['view'] %}<br>
+<h2>Law Details</h2><br>
+<table class='table' style="width: 600px">
+	<tr>
+		<th>Sl.No</th>
+		<th>Title</th>
+		<th>IPC Code</th>
+		<th>Description</th>
+		<th>Penalty</th>
+		<th></th><th></th>
+	</tr>
+	{% for r in data['view'] %}
+	<tr>
+		<td>{{ loop.index }}</td>
+		<td>{{ r['title'] }}</td>
+		<td>{{ r['ipc_code'] }}</td>
+		<td>{{ r['description'] }}</td>
+		<td>{{ r['penalty'] }}</td>
+		<td><a class="btn btn-success" href="?action=update&cid={{r['law_id']}}">Update</a></td>
+		<td><a class="btn btn-danger" href="?action=remove&cid={{r['law_id']}}">Remove</a></td>
+	</tr>
+	{% endfor %}
+</table>
+{% endif %}
+</center>
+{% include 'footer.html' %}

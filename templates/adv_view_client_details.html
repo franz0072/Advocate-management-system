@@ -1,0 +1,36 @@
+{% include "advocate_header.html" %}
+<center>
+	<form>
+		<h1>Client Details</h1>
+		<table class="table" style="width: 800px;">
+			<tr>
+				<th>Sl No</th>
+				<th>Name</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Pincode</th>
+				<th>Gender</th>
+				<th>Dob</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+			{% for row in data['client'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['house_name']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['pincode']}}</td>
+				<td>{{row['gender']}}</td>
+				<td>{{row['dob']}}</td>
+				
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td><a href="adv_chat_with_customer?cid={{row['login_id']}}">Chat</a></td>
+			
+			</tr>
+			{% endfor %}
+		</table><br><br><br><br>
+	</form>
+</center>
+{% include "footer.html" %}

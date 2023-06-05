@@ -1,0 +1,60 @@
+{% include "home_header.html" %}
+<center>
+	<form method="post" enctype="multipart/form-data">
+		<h1>Advocate Registration</h1>
+		<table class="table" style="width: 800px;">
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="fname" required class="form-control" pattern="[a-zA-Z]{0,30}"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="lname" required class="form-control" pattern="[a-zA-Z]{0,30}" ></td>
+			</tr>
+			<tr>
+				<th>Housename</th>
+				<td><input type="text" name="hname" required class="form-control" pattern="[a-zA-Z]{0,30}"></td>
+			</tr>
+			<tr>
+				<th>Place</th>
+				<td><input type="text" name="place" required class="form-control" pattern="[a-zA-Z]{0,30}"></td>
+			</tr>
+			
+			<tr>
+				<th>Qualification</th>
+				<td><input type="text" name="qual" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Gender</th>
+				<td>&emsp;&emsp;&emsp;<input type="radio" name="gender" value="male">Male &emsp;&emsp;&emsp;
+					<input type="radio" name="gender" value="female">Female</td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td><input type="text" name="phone" required class="form-control" pattern="[0-9]{10}"></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="email" name="email" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Certificate</th>
+				<td><input type="file" name="file" required class="form-control" accept="application/pdf"></td>
+			</tr>
+			<tr>
+				<th>Username</th>
+				<td><input type="text" name="uname" required></td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td><input type="password" name="pwd" required></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="submit" class="btn btn-success"></td>
+			</tr>
+			
+		</table>
+		
+	</form>
+</center>
+{% include "footer.html" %}

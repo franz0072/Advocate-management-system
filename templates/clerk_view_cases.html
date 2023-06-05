@@ -1,0 +1,37 @@
+{% include 'clerk_header.html' %}
+<center>
+	<h1>Case Details</h1>
+{% if data['view'] %}
+<h3>Name: {{ data['view'][0]['fullname'] }}</h3><br>
+<table class="table-responsive" style="width: 800px !important">
+	<tr>
+		<th>Sl.No</th>
+		<th>Title</th>
+		<th>Description</th>
+		<th>Case Type</th>
+		<th>Type Description</th>
+		<th>Case Date</th>
+		<th>Police Station</th>
+		<th>Pincode</th>
+		<th>Phone</th>
+	</tr>
+	{% for r in data['view'] %}
+	<tr>
+		<td>{{ loop.index }}</td>
+		<td>{{ r['title'] }}</td>
+		<td>{{ r['des'] }}</td>
+		<td>{{ r['type_name'] }}</td>
+		<td>{{ r['csd'] }}</td>
+		<td>{{ r['case_date'] }}</td>
+		<td>{{ r['police_station'] }}</td>
+		<td>{{ r['cpin'] }}</td>
+		<td>{{ r['cp'] }}</td>
+		<td><a href="clerk_hearing?cid={{r['case_id']}}">Add Hearing</a></td>
+	</tr>
+	{% endfor %}
+</table>
+{% else %}<br><br>
+<h4 style="color: orange">Cases Not Available</h4><br><br><br>
+{% endif %}
+</center><br><br><br>
+{% include 'footer.html' %}

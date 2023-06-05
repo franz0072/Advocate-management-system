@@ -1,0 +1,25 @@
+{% include "advocate_header.html" %}
+<center>
+	<h1>Ratings</h1>
+	<table class="table" style="width: 800px;">
+		<tr>
+			<th>Sl No</th>
+			<th>Client</th>
+			<th>Rate</th>
+			<th>Review</th>
+			<th>Date-Time</th>
+		</tr>
+
+		{% for row in data['rating'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			<td>{{row['first_name']}} {{row['last_name']}}</td>
+			<td>{{row['rate']}}</td>
+			<td>{{row['review']}}</td>
+			<td>{{row['date_time']}}</td>
+		</tr>
+		{% endfor %}
+	</table><br><br><br><br>
+	
+</center>
+{% include "footer.html" %}

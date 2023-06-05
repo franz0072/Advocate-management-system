@@ -1,0 +1,63 @@
+{% include 'admin_header.html' %}
+
+<center>
+	<h1>Manage Case Types</h1>
+<br>
+	{% if data['viewupdates'] %}
+	<h3>Update Case Details</h3><br>
+	<form method="post">
+		<table>
+			<tr>
+				<th>Case Type</th>
+				<td><input type="text" name="crime_type_name"  pattern="[a-zA-Z\s]{0,20}" value="{{data['viewupdates'][0]['type_name']}}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><input type="text" name="discription"  pattern="[a-zA-Z0-9\s]{0,100}" value="{{data['viewupdates'][0]['description']}}" required class="form-control"></td>
+			</tr>
+			<tr><td><br></td></tr>
+			<tr>
+				<td colspan=2 align="center"><input class="btn btn-primary" type="submit" name="updatesubmit" value="Update"></td>
+			</tr>
+		</table>
+	</form>
+	{% else %}
+	<form method="post">
+		<table>
+			<tr>
+				<th>Case Type</th>
+				<td><input type="text"  pattern="[a-zA-Z\s]{0,20}" name="crime_type_name" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><input type="text"  pattern="[a-zA-Z0-9\s]{0,100}" name="discription" required class="form-control"></td>
+			</tr>
+			<tr><td><br></td></tr>
+			<tr>
+				<td colspan=2 align="center"><input type="submit" name="submit" class="btn btn-success" value="Add Case Type"></td>
+			</tr>
+		</table>
+	</form><br>
+	{% endif %}
+{% if data['view'] %}<br>
+<h2>Case Details</h2><br>
+<table class='table' style="width: 600px">
+	<tr>
+		<th>Sl.No</th>
+		<th>Crime</th>
+		<th>Description</th>
+		<th></th><th></th>
+	</tr>
+	{% for r in data['view'] %}
+	<tr>
+		<td>{{ loop.index }}</td>
+		<td>{{ r['type_name'] }}</td>
+		<td>{{ r['description'] }}</td>
+		<td><a class="btn btn-success" href="?action=update&cid={{r['type_id']}}">Update</a></td>
+		<td><a class="btn btn-danger" href="?action=remove&cid={{r['type_id']}}">Remove</a></td>
+	</tr>
+	{% endfor %}
+</table>
+{% endif %}
+</center>
+{% include 'footer.html' %}

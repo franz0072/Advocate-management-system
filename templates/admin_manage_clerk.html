@@ -1,0 +1,137 @@
+{% include 'admin_header.html' %}
+
+<center>
+	<h1>Manage Clerk</h1>
+<br>
+	{% if data['viewupdates'] %}
+	<h3>Update Case Details</h3><br>
+	<form method="post">
+		<table>
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="fname" required class="form-control" pattern="[a-zA-Z]{0,30}" value="{{data['viewupdates'][0]['fname']}}"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="lname" required class="form-control" pattern="[a-zA-Z]{0,30}"  value="{{data['viewupdates'][0]['lname']}}"></td>
+			</tr>
+			<tr>
+				<th>Housename</th>
+				<td><input type="text" name="hname" required class="form-control" pattern="[a-zA-Z]{0,30}"  value="{{data['viewupdates'][0]['house']}}"></td>
+			</tr>
+			<tr>
+				<th>Place</th>
+				<td><input type="text" name="place" required class="form-control" pattern="[a-zA-Z]{0,30}" value="{{data['viewupdates'][0]['place']}}"></td>
+			</tr>
+			
+			<tr>
+				<th>Qualification</th>
+				<td><input type="text" name="qual" required class="form-control" value="{{data['viewupdates'][0]['qualification']}}"></td>
+			</tr>
+			<tr>
+				<th>Gender</th>
+                {% if data['viewupdates'][0]['gender']=='male' %}
+				<td>&emsp;&emsp;&emsp;<input type="radio" name="gender" value="male" checked>Male &emsp;&emsp;&emsp;
+					<input type="radio" name="gender" value="female">Female</td>
+                    {% else %}
+                    <td>&emsp;&emsp;&emsp;<input type="radio" name="gender" value="male" >Male &emsp;&emsp;&emsp;
+                        <input type="radio" name="gender" value="female" checked>Female</td>
+                        {% endif %}
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td><input type="text" name="phone" required class="form-control" pattern="[0-9]{10}" value="{{data['viewupdates'][0]['phone']}}"></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="email" name="email" required class="form-control" value="{{data['viewupdates'][0]['email']}}"></td>
+			</tr>
+			<td><br></td></tr>
+			<tr>
+				<td colspan=2 align="center"><input class="btn btn-primary" type="submit" name="updatesubmit" value="Update"></td>
+			</tr>
+		</table>
+	</form>
+	{% else %}
+	<form method="post">
+		<table>
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="fname" required class="form-control" pattern="[a-zA-Z]{0,30}"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="lname" required class="form-control" pattern="[a-zA-Z]{0,30}" ></td>
+			</tr>
+			<tr>
+				<th>Housename</th>
+				<td><input type="text" name="hname" required class="form-control" pattern="[a-zA-Z]{0,30}"></td>
+			</tr>
+			<tr>
+				<th>Place</th>
+				<td><input type="text" name="place" required class="form-control" pattern="[a-zA-Z]{0,30}"></td>
+			</tr>
+			
+			<tr>
+				<th>Qualification</th>
+				<td><input type="text" name="qual" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Gender</th>
+				<td>&emsp;&emsp;&emsp;<input type="radio" name="gender" value="male">Male &emsp;&emsp;&emsp;
+					<input type="radio" name="gender" value="female">Female</td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td><input type="text" name="phone" required class="form-control" pattern="[0-9]{10}"></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="email" name="email" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Username</th>
+				<td><input type="text" name="uname" required></td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td><input type="password" name="pwd" required></td>
+			</tr><td><br></td></tr>
+			<tr>
+				<td colspan=2 align="center"><input type="submit" name="submit" class="btn btn-success" value="Add Clerk"></td>
+			</tr>
+		</table>
+	</form><br>
+	{% endif %}
+{% if data['view'] %}<br>
+<h2>Clerk Details</h2><br>
+<table class='table' style="width: 600px">
+	<tr>
+		<th>Sl.No</th>
+		<th>Name</th>
+		<th>Qualification</th>
+        <th>Gender</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>House Name</th>
+        <th>Place</th>
+		<th></th><th></th>
+	</tr>
+	{% for r in data['view'] %}
+	<tr>
+		<td>{{ loop.index }}</td>
+		<td>{{ r['fname'] }} {{ r['lname'] }}</td>
+		<td>{{ r['qualification'] }}</td>
+        <td>{{ r['gender'] }}</td>
+        <td>{{ r['phone'] }}</td>
+        <td>{{ r['email'] }}</td>
+        <td>{{ r['house'] }}</td>
+        <td>{{ r['place'] }}</td>
+        <td><a class="btn btn-success" href="?action=update&cid={{r['clerk_id']}}">Update</a></td>
+		<td><a class="btn btn-danger" href="?action=remove&cid={{r['clerk_id']}}">Remove</a></td>
+	</tr>
+	{% endfor %}
+</table>
+{% endif %}
+</center>
+{% include 'footer.html' %}

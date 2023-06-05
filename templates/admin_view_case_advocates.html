@@ -1,0 +1,29 @@
+{% include 'admin_header.html' %}
+<center>
+	<h1>Case Handling Advocates</h1><br>
+	{% if data['view'] %}
+<table class="table-responsive" style="width: 800px !important">
+	<tr>
+		<th>Sl.No</th>
+		<th>Case Title</th>
+		<th>Advocate Name</th>
+		<th>Description</th>
+		<th>Case Date</th>
+		<th>Police Station</th>
+	</tr>
+	{% for r in data['view'] %}
+	<tr>
+		<td>{{ loop.index }}</td>
+		<td>{{ r['title'] }}</td>
+		<td>{{ r['adv_name'] }}</td>
+		<td>{{ r['description'] }}</td>
+		<td>{{ r['case_date'] }}</td>
+		<td>{{ r['police_station'] }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% else %}<br>
+<h3 style="color: orange">Case Handling Advocates Details Not Available Right Now...</h3><br><br><br><br>
+{% endif %}
+</center><br><br><br><br>
+{% include 'footer.html' %}

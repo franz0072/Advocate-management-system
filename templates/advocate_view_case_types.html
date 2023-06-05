@@ -1,0 +1,21 @@
+{% include "advocate_header.html" %}
+<center>
+	<form>
+		<h1>Case Types</h1>
+		<table class="table" width="800px;">
+			<tr>
+				<th>Sl No</th>
+				<th>Type Name</th>
+				<th>Description</th>
+			</tr>
+			{% for row in data['case'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['type_name']}}</td>
+				<td>{{row['description']}}</td>
+			</tr>
+			{% endfor %}
+		</table><br><br><br><br>
+	</form>
+</center>
+{% include "footer.html" %}

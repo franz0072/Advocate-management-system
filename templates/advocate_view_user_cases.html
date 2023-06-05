@@ -1,0 +1,39 @@
+{% include "advocate_header.html" %}
+<center>
+	<form>
+		<h1>User Cases</h1>
+		<table class="table" style="width: 800px;">
+			<tr>
+				<th>Sl No</th>
+				<th>Client</th>
+				<th>Type</th>
+				<th>Tiltle</th>
+				<th>Description</th>
+				<th>Case date</th>
+				<th>Police station</th>
+				<th>Pincode</th>
+				<th>Phone</th>
+				<th>Status</th>
+			</tr>
+			{% for row in data['cases'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['first_name']}} {{row['last_name']}}</td>
+				<td>{{row['type_name']}}</td>
+				<td>{{row['title']}}</td>
+				<td>{{row['description']}}</td>
+				<td>{{row['case_date']}}</td>
+				<td>{{row['police_station']}}</td>
+				<td>{{row['pincode']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['status']}}</td>
+				<td><a href="adv_view_client_details?cid={{row['client_id']}}">View Client Details</a></td>
+				<td><a href="adv_send_proposal?case_id={{row['case_id']}}">Send Proposal</a></td>
+				<td><a href="advocate_view_hearing_chat?case_id={{row['case_id']}}">Hearing</a></td>
+				<!-- <td><a href="adv_upload_case_files?case_id={{row['case_id']}}">Upload Case File</a></td> -->
+			</tr>
+			{% endfor %}
+		</table><br><br><br><br>
+	</form>
+</center>
+{% include "footer.html" %}

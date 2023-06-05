@@ -1,0 +1,50 @@
+{% include 'admin_header.html' %}
+<style>
+	table,th,td{
+		border:1px solid white;
+		border-collapse: collapse;
+		padding: 10px;
+	}
+</style>
+<center>
+	<h1>Advocate Details</h1><br>
+{% if data['view'] %}<br><div class="control">
+<table class="table table-striped" style="width: 1200px !important;padding: 10px;border: 1px solid white;">
+	<tr>
+		<th>Sl.No</th>
+		<th>Name</th>
+		<th>Qualification</th>
+		<th>House Name</th>
+		<th>Gender</th>
+		<th>Place</th>
+		<th>Phone</th>
+		<th>Certificate</th>
+		<th>Email</th><th></th><th></th>
+	</tr>
+	{% for r in data['view'] %}
+	<tr>
+		<td>{{ loop.index }}</td>
+		<td>{{ r['fullname'] }}</td>
+		<td>{{ r['qualification'] }}</td>
+		<td>{{ r['house_name'] }}</td>
+		<td>{{ r['gender'] }}</td>
+		<td>{{ r['place'] }}</td>
+		<td>{{ r['phone'] }}</td>
+		<td><a href="/{{ r['image'] }}">Certificate</a></td>
+		<td>{{ r['email'] }}</td>
+		{% if r['usertype']=='adv_pending' %}
+		<td><a class="btn btn-success" href="?action=accept&id={{r['logid']}}">Accept</a></td>
+		<td><a class="btn btn-danger" href="?action=reject&id={{r['logid']}}">Reject</a></td>
+		{% elif r['usertype']=='rejected' %}
+		<td colspan="2"><a class="btn btn-success" href="?action=accept&id={{r['logid']}}">Accept</a></td>
+		{% elif r['usertype']=='advocate' %}
+		<td colspan="2"><a class="btn btn-danger" href="?action=reject&id={{r['logid']}}">Reject</a></td>
+		{% endif %}
+	</tr>
+	{% endfor %}
+</table></div>
+{% else %}<br>
+<h4 style="color: orange">No Registered Advocates</h4><br><br><br>
+{% endif %}
+</center><br><br><br>
+{% include 'footer.html' %}

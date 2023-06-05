@@ -1,0 +1,47 @@
+{% include "advocate_header.html" %}
+<center>
+    {% if data['meet'] %}
+	<form>
+        <a href="?action=today&mid=0">Today's Meeting</a>
+		<table>
+			<tr>
+                <th>Sl no</th>
+				<th>CLIENT</th>
+                <th>CASE</th>
+                <th>DESCRIPTION</th>
+                <TH>PHONE</TH>
+                <th>Meeting Time</th>
+                <th>Date</th>
+                <th>Status</th>
+
+			</tr>
+    
+
+            {% for i in data['meet'] %}
+         
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{i['first_name']}} {{i['last_name']}}</td>
+                <td>{{i['title']}}</td>
+                <td>{{i['description']}}</td>
+                <td>{{i['phone']}}</td>
+                <td>{{i['time']}}</td>
+                <td>{{i['date']}}</td>
+                <td>{{i['meetstatus']}}</td>
+                {% if i['meetstatus']=='pending' %}
+                <td><a href="?action=accept&mid={{i['meeting_id']}}">Accept</a></td>
+                <td><a href="?action=reject&mid={{i['meeting_id']}}">Reject</a></td>
+
+
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+  
+		</table>
+	</form>
+    {% else %}
+    <h2>No data !!</h2>
+    {% endif %}
+</center><br><br><br><br>
+{% include "footer.html" %}

@@ -1,0 +1,27 @@
+{% include 'clerk_header.html' %}
+
+<center>
+	<h1>Manage Hearing</h1>
+<br>
+
+	<form method="post">
+		<table>
+			<tr>
+				<th>Notes</th>
+				<td><input type="text" name="note"  required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Next Hearing</th>
+				<td><input type="date" name="hdate"  required class="form-control"></td>
+			</tr>
+
+			<tr><td><br></td></tr>
+			<tr>
+				<td colspan=2 align="center"><input type="submit" name="submit" class="btn btn-success" value="Add Hearing Details"></td>
+			</tr>
+		</table>
+	</form><br>
+
+
+</center>
+{% include 'footer.html' %}

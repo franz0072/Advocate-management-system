@@ -1,0 +1,44 @@
+{% include 'admin_header.html' %}
+<style>
+	table,th,td{
+		border:1px solid white;
+		border-collapse: collapse;
+		padding: 10px;
+	}
+</style>
+<center>
+	<h1>Customers Details</h1><br>
+{% if data['view'] %}
+<table class="table table-striped" style="width: 1200px !important;padding: 10px;border: 1px solid white;">
+	<tr>
+		<th>Sl.No</th>
+		<th>Name</th>
+		<th>Dob</th>
+		<th>Gender</th>
+		<th>House Name</th>
+		<th>Place</th>
+		<th>Pincode</th>
+		<th>Phone</th>
+		<th>Email</th><th></th><th></th>
+	</tr>
+	{% for r in data['view'] %}
+	<tr>
+		<td>{{ loop.index }}</td>
+		<td>{{ r['fullname'] }}</td>
+		<td>{{ r['dob'] }}</td>
+		<td>{{ r['gender'] }}</td>
+		<td>{{ r['place'] }}</td>
+		<td>{{ r['house_name'] }}</td>
+		<td>{{ r['pincode'] }}</td>
+		<td>{{ r['phone'] }}</td>   
+		<td>{{ r['email'] }}</td>
+		<td><a class="btn btn-secondary" href="?action=accept&id={{ r['login_id'] }}">Accept</a></td>
+		<td><a class="btn btn-secondary" href="?action=reject&id={{ r['login_id'] }}">Reject</a></td>
+	</tr>
+	{% endfor %}
+</table>
+{% else %}<br>
+<h4 style="color: orange">No Registerations</h4><br><br><br>
+{% endif %}
+</center><br><br><br>
+{% include 'footer.html' %}

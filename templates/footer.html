@@ -1,0 +1,42 @@
+			<footer class="site-footer">
+				<div class="container">
+					<!-- <div class="subscribe-form">
+						<form action="#"> -->
+							<!-- <label for="#">
+								<span>Do you want to get news?</span>
+								<span>Join our news letter</span>
+							</label> -->
+							<!-- <div class="control">
+								<input type="text" placeholder="Enter your email to subscribe...">
+								<button type="submit"><img src="/static/images/icon-envelope.png" alt=""></button>
+														</form>
+							</div> -->
+					<!-- </div> -->
+					<div class="social-links">
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href="#"><i class="fa fa-google-plus"></i></a>
+						<a href="#"><i class="fa fa-pinterest"></i></a>
+					</div>
+					<div class="copy">
+						<p>Copyright 2014 Company name. Designed by Themeezy. All rights reserved.</p>
+					</div>
+				</div>
+			</footer> <!-- .site-footer -->
+
+		</div> <!-- #site-content -->
+
+		<script src="/static/js/jquery-1.11.1.min.js"></script>
+		<script src="/static/js/plugins.js"></script>
+		<script src="/static/js/app.js"></script>
+	</body>
+</html>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+    {% for message in messages %}
+    <script>alert("{{ message }}")</script>
+    {% endfor %}
+
+    {% endif %}
+{% endwith %}
